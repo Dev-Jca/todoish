@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoish/models/task_data.dart';
 
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
   final Function(bool?)? checkboxCallback;
+  final Function() onLongPress;
 
   TaskTile({
     Key? key,
+    required this.onLongPress,
     required this.taskTitle,
     required this.isChecked,
     required this.checkboxCallback,
@@ -16,6 +20,7 @@ class TaskTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
       child: ListTile(
+        onLongPress: onLongPress,
         title: Text(
           taskTitle,
           style: TextStyle(
